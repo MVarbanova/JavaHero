@@ -75,6 +75,7 @@ public class CreateHero extends javax.swing.JFrame {
         new MainForm().setVisible(true);
         MainForm.setHero(h);
         MainForm.makeOpponents();
+        h = null;
     }//GEN-LAST:event_btnCreateHeroActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCreateHero;

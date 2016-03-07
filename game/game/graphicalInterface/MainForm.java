@@ -16,7 +16,7 @@ public class MainForm extends javax.swing.JFrame {
     private ArrayList<Item> weaponsLibrary;
     private static ArrayList<Hero> heroesLibrary;
     private static DefaultListModel modelHeros;
-    private DefaultListModel modelWeapons;
+    private static DefaultListModel modelWeapons;
     private Thread thrEnergy;
     private Thread thrHealth;
     private int nHeroes;  //koi oponent sme izbrali
@@ -91,7 +91,7 @@ public class MainForm extends javax.swing.JFrame {
         weaponsLibrary.add(new Item("KoalaMan", 13, 8));
         weaponsLibrary.add(new Item("ST", 21, 21));
         weaponsLibrary.add(new Item("Adriana", 2, 15));
-        weaponsLibrary.add(new Item("Vafla Borovec", 4, 12));
+        weaponsLibrary.add(new Item("Motika", 4, 12));
         weaponsLibrary.add(new Item("Prava Lopata", 20, 20));
         for (i = 0; i < weaponsLibrary.size(); i++) {
             modelWeapons.addElement(weaponsLibrary.get(i).toString());
@@ -255,7 +255,8 @@ public class MainForm extends javax.swing.JFrame {
 
         tabWeapons.setBackground(new java.awt.Color(51, 51, 0));
         //tabWeapons.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        tabWeapons.setLayout(new java.awt.BorderLayout());
+        //tabWeapons.setLayout(new java.awt.BorderLayout());
+        tabWeapons.setLayout(null);
 
         lblWHead.setBackground(new java.awt.Color(160, 51, 0));
         lblWHead.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -337,7 +338,7 @@ public class MainForm extends javax.swing.JFrame {
 
         //tabWeapons.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 40, 290, 200));
         tabWeapons.add(jScrollPane2);
-        jScrollPane2.setBounds(210, 40, 290, 20);
+        jScrollPane2.setBounds(210, 40, 290, 200);
 
         btnHead.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         btnHead.setText("Head");
@@ -376,7 +377,8 @@ public class MainForm extends javax.swing.JFrame {
 
         tabMyHero.setBackground(new java.awt.Color(51, 51, 0));
         //tabMyHero.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        tabMyHero.setLayout(new java.awt.BorderLayout());
+        //tabMyHero.setLayout(new java.awt.BorderLayout());
+        tabMyHero.setLayout(null);
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(160, 51, 0));
@@ -591,6 +593,7 @@ public class MainForm extends javax.swing.JFrame {
             hero = new Hero(battleOne);
             JOptionPane.showMessageDialog(this, "He won!");
         }
+        battleOne = null;
     }//GEN-LAST:event_btnFightActionPerformed
 
     /**
@@ -604,10 +607,10 @@ public class MainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRefreshActionPerformed
 
     private void listWeaponsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listWeaponsMouseClicked
-        nWeapons = listWeapons.locationToIndex(evt.getPoint());
-        btnHead.setEnabled(true);
+    	btnHead.setEnabled(true);
         btnLeft.setEnabled(true);
         btnRight.setEnabled(true);
+    	nWeapons = listWeapons.locationToIndex(evt.getPoint());
     }//GEN-LAST:event_listWeaponsMouseClicked
 
     /**

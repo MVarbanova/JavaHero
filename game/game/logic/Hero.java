@@ -202,7 +202,7 @@ public class Hero implements Serializable {
         //     other.setHealth((int) (other.getHealth() - (double) (getEnergy() / getMaxEnergy()) * dmgAll()));
         other.health -= ((double) energy / maxEnergy) * this.dmgAll();
         //     setEnergy((int) (getEnergy() - 0.1 * ((double) (getEnergy() / getMaxEnergy()))));
-        energy += 0.1 * ((double) energy / maxEnergy);
+        energy -= 0.1 * ((double) energy / maxEnergy);//was+=
     }
     
     /**
