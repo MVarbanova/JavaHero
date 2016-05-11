@@ -5,22 +5,27 @@ import game.logic.Hero;
 import game.logic.Item;
 import game.logic.SaveClass;
 
-import java.awt.LayoutManager;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.DefaultListModel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 
+@SuppressWarnings({"unqualified-field-access","synthetic-access","static-method"})
 public class MainForm extends javax.swing.JFrame {
-    private static Hero hero;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -2591145253627140188L;
+	private static Hero hero;
     private ArrayList<Item> weaponsLibrary;
     private static ArrayList<Hero> heroesLibrary;
-    private static DefaultListModel modelHeros;
-    private static DefaultListModel modelWeapons;
+    private static DefaultListModel<String> modelHeros;
+    private static DefaultListModel<String> modelWeapons;
     private Thread thrEnergy;
     private Thread thrHealth;
-    private int nHeroes;  //koi oponent sme izbrali
-    private int nWeapons; //koe oryjie sme izbrali
+    private int nHeroes;  //Which opponent we chose
+    private int nWeapons; //Which weapon we chose
 
     /**
      * Sets Current game hero for this session
@@ -35,10 +40,10 @@ public class MainForm extends javax.swing.JFrame {
      * Method creates threads for: increasing of health of Current game hero
      * increasing of energy of Current game hero
      */
-    private void healthAndEnergyThreads() {
+	private void healthAndEnergyThreads() {
         thrHealth = new Thread(new Runnable() {
 
-            @Override
+			@Override
             public void run() {
                 while (true) {
                     try {
@@ -47,7 +52,7 @@ public class MainForm extends javax.swing.JFrame {
                             hero.setHealth(hero.getHealth() + 1);
                             lblHealth.setText(hero.getHealth() + "");
                         }
-                    } catch (InterruptedException e) {
+                    } catch (@SuppressWarnings("unused") InterruptedException e) {
                         return;
                     }
 
@@ -66,7 +71,7 @@ public class MainForm extends javax.swing.JFrame {
                             hero.setEnergy(hero.getEnergy() + 1);
                             lblEnergy.setText(hero.getEnergy() + "");
                         }
-                    } catch (InterruptedException e) {
+                    } catch (@SuppressWarnings("unused") InterruptedException e) {
                         return;
                     }
 
@@ -83,7 +88,7 @@ public class MainForm extends javax.swing.JFrame {
     private void makeWaepons() {
         int i;
         modelWeapons.removeAllElements();
-        weaponsLibrary = new ArrayList<Item>();
+        weaponsLibrary = new ArrayList<>();
         weaponsLibrary.add(new Item("Spider", 5, 12));
         weaponsLibrary.add(new Item("Mukakana", 7, 7));
         weaponsLibrary.add(new Item("Casa", 14, 6));
@@ -99,7 +104,7 @@ public class MainForm extends javax.swing.JFrame {
     }
 
     /**
-     * Sets components of Current game hero to the propriate labels in MyHero
+     * Sets components of Current game hero to the labels in MyHero
      * tab
      */
     private void viewStats() {
@@ -119,9 +124,9 @@ public class MainForm extends javax.swing.JFrame {
      */
     public MainForm() {
         initComponents();
-        modelHeros = new DefaultListModel();
+        modelHeros = new DefaultListModel<>();
         listOpponents.setModel(modelHeros);
-        modelWeapons = new DefaultListModel();
+        modelWeapons = new DefaultListModel<>();
         listWeapons.setModel(modelWeapons);
         makeWaepons();
         healthAndEnergyThreads();
@@ -141,7 +146,7 @@ public class MainForm extends javax.swing.JFrame {
         lblChoose = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        listOpponents = new javax.swing.JList();
+        listOpponents = new JList<>();
         btnViewOpponent = new javax.swing.JButton();
         btnFight = new javax.swing.JButton();
         btnRefresh = new javax.swing.JButton();
@@ -153,7 +158,7 @@ public class MainForm extends javax.swing.JFrame {
         lblWRight = new javax.swing.JLabel();
         lblRight = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        listWeapons = new javax.swing.JList();
+        listWeapons = new JList<>();
         btnHead = new javax.swing.JButton();
         btnLeft = new javax.swing.JButton();
         btnRight = new javax.swing.JButton();
@@ -180,8 +185,9 @@ public class MainForm extends javax.swing.JFrame {
 
         tabbedMainFormPanel.setBackground(new java.awt.Color(153, 153, 153));
         tabbedMainFormPanel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabbedMainFormPanelMouseClicked(evt);
+            @Override
+			public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabbedMainFormPanelMouseClicked();
             }
         });
 
@@ -204,13 +210,20 @@ public class MainForm extends javax.swing.JFrame {
 
         listOpponents.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         listOpponents.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Todor", "Kris", "Gosho", "Irinei" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
+            /**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+			String[] strings = { "Todor", "Kris", "Gosho", "Irinei" };
+            @Override
+			public int getSize() { return strings.length; }
+            @Override
+			public Object getElementAt(int i) { return strings[i]; }
         });
         listOpponents.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         listOpponents.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+            @Override
+			public void mouseClicked(java.awt.event.MouseEvent evt) {
                 listOpponentsMouseClicked(evt);
             }
         });
@@ -223,8 +236,9 @@ public class MainForm extends javax.swing.JFrame {
         btnViewOpponent.setText("View Opponent");
         btnViewOpponent.setEnabled(false);
         btnViewOpponent.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnViewOpponentActionPerformed(evt);
+            @Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewOpponentActionPerformed();
             }
         });
         tabBattlefield.add(btnViewOpponent);
@@ -234,8 +248,9 @@ public class MainForm extends javax.swing.JFrame {
         btnFight.setText("Fight");
         btnFight.setEnabled(false);
         btnFight.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFightActionPerformed(evt);
+            @Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFightActionPerformed();
             }
         });
         tabBattlefield.add(btnFight);
@@ -244,8 +259,9 @@ public class MainForm extends javax.swing.JFrame {
         btnRefresh.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnRefresh.setText("Refresh Opponents");
         btnRefresh.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRefreshActionPerformed(evt);
+            @Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRefreshActionPerformed();
             }
         });
         tabBattlefield.add(btnRefresh);
@@ -324,13 +340,20 @@ public class MainForm extends javax.swing.JFrame {
 
         listWeapons.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         listWeapons.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Termometyr", "Piper", "Delfin", "Noktorezachka", "Kifla", "Govejdo zadusheno" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
+            /**
+			 * 
+			 */
+			private static final long serialVersionUID = -299563404528206571L;
+			String[] strings = { "Termometyr", "Piper", "Delfin", "Noktorezachka", "Kifla", "Govejdo zadusheno" };
+            @Override
+			public int getSize() { return strings.length; }
+            @Override
+			public Object getElementAt(int i) { return strings[i]; }
         });
         listWeapons.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         listWeapons.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+            @Override
+			public void mouseClicked(java.awt.event.MouseEvent evt) {
                 listWeaponsMouseClicked(evt);
             }
         });
@@ -343,8 +366,9 @@ public class MainForm extends javax.swing.JFrame {
         btnHead.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         btnHead.setText("Head");
         btnHead.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHeadActionPerformed(evt);
+            @Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHeadActionPerformed();
             }
         });
         //tabWeapons.add(btnHead, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 280, 80, 22));
@@ -354,8 +378,9 @@ public class MainForm extends javax.swing.JFrame {
         btnLeft.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         btnLeft.setText("Left hand");
         btnLeft.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLeftActionPerformed(evt);
+            @Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLeftActionPerformed();
             }
         });
         //tabWeapons.add(btnLeft, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 280, 80, 22));
@@ -365,8 +390,9 @@ public class MainForm extends javax.swing.JFrame {
         btnRight.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         btnRight.setText("Right hand");
         btnRight.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRightActionPerformed(evt);
+            @Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRightActionPerformed();
             }
         });
         //tabWeapons.add(btnRight, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 280, 90, 22));
@@ -485,8 +511,9 @@ public class MainForm extends javax.swing.JFrame {
         btnSave.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnSave.setText("Save");
         btnSave.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSaveActionPerformed(evt);
+            @Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed();
             }
         });
         //tabMyHero.add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 300, 90, -1));
@@ -496,8 +523,9 @@ public class MainForm extends javax.swing.JFrame {
         btnSearchFood.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnSearchFood.setText("Search Food");
         btnSearchFood.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSearchFoodActionPerformed(evt);
+            @Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchFoodActionPerformed();
             }
         });
         //tabMyHero.add(btnSearchFood, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 300, -1, -1));
@@ -506,8 +534,9 @@ public class MainForm extends javax.swing.JFrame {
 
         lblLogout.setIcon(new javax.swing.ImageIcon("C:\\Users\\Mim\\Desktop\\MimiGraphicalInterface\\logout.png")); // NOI18N
         lblLogout.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblLogoutMouseClicked(evt);
+            @Override
+			public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblLogoutMouseClicked();
             }
         });
         //tabMyHero.add(lblLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 20, 60, 50));
@@ -530,7 +559,7 @@ public class MainForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tabbedMainFormPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabbedMainFormPanelMouseClicked
+    private void tabbedMainFormPanelMouseClicked() {//GEN-FIRST:event_tabbedMainFormPanelMouseClicked
         viewStats();
         modelHeros.removeAllElements();
         makeOpponents();
@@ -544,11 +573,11 @@ public class MainForm extends javax.swing.JFrame {
     /**
      * Saves Current game hero
      */
-    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+	private void btnSaveActionPerformed() {//GEN-FIRST:event_btnSaveActionPerformed
         SaveClass.saveHero(hero);
     }//GEN-LAST:event_btnSaveActionPerformed
 
-    private void btnViewOpponentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewOpponentActionPerformed
+    private void btnViewOpponentActionPerformed() {//GEN-FIRST:event_btnViewOpponentActionPerformed
 
         JOptionPane.showMessageDialog(this, heroesLibrary.get(nHeroes).toString());
     }//GEN-LAST:event_btnViewOpponentActionPerformed
@@ -557,7 +586,7 @@ public class MainForm extends javax.swing.JFrame {
      * Generates random int to add to Current game hero health. If it is
      * negative, you consider yourself poisoned.
      */
-    private void btnSearchFoodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchFoodActionPerformed
+    private void btnSearchFoodActionPerformed() {//GEN-FIRST:event_btnSearchFoodActionPerformed
         if (hero.getHealth() == 100) {
             return;
         }
@@ -580,10 +609,10 @@ public class MainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_listOpponentsMouseClicked
 
     /**
-     * This method performes a battle between Current game hero and choosen
+     * This method performs a battle between Current game hero and chosen
      * opponent.
      */
-    private void btnFightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFightActionPerformed
+    private void btnFightActionPerformed() {//GEN-FIRST:event_btnFightActionPerformed
         Battle battle = new Battle(hero, heroesLibrary.get(nHeroes));
         Hero battleOne = battle.fight();
         if (!(battleOne.getExperience() == hero.getExperience())) {
@@ -599,7 +628,7 @@ public class MainForm extends javax.swing.JFrame {
     /**
      * Refresh/generate new set of opponents by makeOpponents(); 
      */
-    private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
+    private void btnRefreshActionPerformed() {//GEN-FIRST:event_btnRefreshActionPerformed
         modelHeros.removeAllElements();
         btnFight.setEnabled(false);
         btnViewOpponent.setEnabled(false);
@@ -616,7 +645,7 @@ public class MainForm extends javax.swing.JFrame {
     /**
      * Sets chosen item as Current game hero head item
      */
-    private void btnHeadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHeadActionPerformed
+    private void btnHeadActionPerformed() {//GEN-FIRST:event_btnHeadActionPerformed
         hero.setHead(weaponsLibrary.get(nWeapons));
         lblHead.setText(hero.getHead().getIname());
         btnHead.setEnabled(false);
@@ -627,7 +656,7 @@ public class MainForm extends javax.swing.JFrame {
     /**
      * Sets chosen item as Current game hero Left Hand item
      */
-    private void btnLeftActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLeftActionPerformed
+    private void btnLeftActionPerformed() {//GEN-FIRST:event_btnLeftActionPerformed
         hero.setLeft(weaponsLibrary.get(nWeapons));
         lblLeft.setText(hero.getLeft().getIname());
         btnHead.setEnabled(false);
@@ -639,7 +668,7 @@ public class MainForm extends javax.swing.JFrame {
     /**
      * Sets chosen item as Current game hero right hand item
      */
-    private void btnRightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRightActionPerformed
+    private void btnRightActionPerformed() {//GEN-FIRST:event_btnRightActionPerformed
         hero.setRight(weaponsLibrary.get(nWeapons));
         lblRight.setText(hero.getRight().getIname());
         btnHead.setEnabled(false);
@@ -650,7 +679,7 @@ public class MainForm extends javax.swing.JFrame {
     /**
      * LogOut. Redirect to HomeScreen Form
      */
-    private void lblLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLogoutMouseClicked
+    private void lblLogoutMouseClicked() {//GEN-FIRST:event_lblLogoutMouseClicked
         thrEnergy.interrupt();
         thrHealth.interrupt();
         dispose();
@@ -664,7 +693,7 @@ public class MainForm extends javax.swing.JFrame {
     */
     public static void makeOpponents() {
         Random rnd = new Random();
-        heroesLibrary = new ArrayList<Hero>();
+        heroesLibrary = new ArrayList<>();
 
         int powerLeft = hero.getLeft().getPower();
         int powerRight = hero.getRight().getPower();
@@ -742,8 +771,8 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JLabel lblWHead;
     private javax.swing.JLabel lblWLeft;
     private javax.swing.JLabel lblWRight;
-    private javax.swing.JList listOpponents;
-    private javax.swing.JList listWeapons;
+    private javax.swing.JList<String> listOpponents;
+    private javax.swing.JList<String> listWeapons;
     private javax.swing.JPanel tabBattlefield;
     private javax.swing.JPanel tabMyHero;
     private javax.swing.JPanel tabWeapons;

@@ -5,10 +5,16 @@ import game.logic.Item;
 import game.logic.SaveClass;
 import java.io.File;
 import javax.swing.DefaultListModel;
+import javax.swing.JList;
 
+@SuppressWarnings({ "unchecked", "unqualified-field-access" })
 public class HomeScreen extends javax.swing.JFrame {
 
-    private static DefaultListModel model;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private static DefaultListModel<String> model;
     private String heroName;
 
     /**
@@ -16,12 +22,12 @@ public class HomeScreen extends javax.swing.JFrame {
      */
     public HomeScreen() {
         initComponents();
-        model = new DefaultListModel();
+        model = new DefaultListModel<>();
         listHero.setModel(model);
     }
     
     /**
-     * This method creates firstrun list of heroes for the game
+     * This method creates first run list of heroes for the game
      */
     private static void firstHeroes() {
         Hero h = new Hero("Kris", 4, new Item("uno", 3, 12), new Item("Duo", 12, 8), new Item("f", 12, 34),
@@ -38,7 +44,6 @@ public class HomeScreen extends javax.swing.JFrame {
         SaveClass.saveHero(n);
     }
 
-    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -47,7 +52,7 @@ public class HomeScreen extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         btnCreate = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        listHero = new javax.swing.JList();
+        listHero = new JList<>();
         btnOK = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -71,8 +76,9 @@ public class HomeScreen extends javax.swing.JFrame {
         btnCreate.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnCreate.setText("Create one");
         btnCreate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCreateActionPerformed(evt);
+            @Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateActionPerformed();
             }
         });
         jPanel1.add(btnCreate);
@@ -80,13 +86,20 @@ public class HomeScreen extends javax.swing.JFrame {
 
         listHero.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         listHero.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Bai Tosho", "bratched mu", "ortaka mu", "badjanaka", "portierkata" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
+            /**
+			 * 
+			 */
+			private static final long serialVersionUID = 693106279431190491L;
+			String[] strings = { "Bai Tosho", "bratched mu", "ortaka mu", "badjanaka", "portierkata" };
+            @Override
+			public int getSize() { return strings.length; }
+            @Override
+			public Object getElementAt(int i) { return strings[i]; }
         });
         listHero.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         listHero.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+            @Override
+			public void mouseClicked(java.awt.event.MouseEvent evt) {
                 listHeroMouseClicked(evt);
             }
         });
@@ -99,8 +112,9 @@ public class HomeScreen extends javax.swing.JFrame {
         btnOK.setText("OK");
         btnOK.setEnabled(false);
         btnOK.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnOKActionPerformed(evt);
+            @Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOKActionPerformed();
             }
         });
         jPanel1.add(btnOK);
@@ -120,9 +134,9 @@ public class HomeScreen extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     /**
-     * Applyes chosen hero as Current game hero. Redirect to Main Form
+     * Applies chosen hero as Current game hero. Redirect to Main Form
      */
-    private void btnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOKActionPerformed
+    private void btnOKActionPerformed() {//GEN-FIRST:event_btnOKActionPerformed
         dispose();
         new MainForm().setVisible(true);
         Hero h = new Hero(heroName);
@@ -143,7 +157,7 @@ public class HomeScreen extends javax.swing.JFrame {
     /**
      * Redirect to CreateHero form
      */
-    private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
+    private void btnCreateActionPerformed() {//GEN-FIRST:event_btnCreateActionPerformed
         dispose();
         new CreateHero().setVisible(true);
     }//GEN-LAST:event_btnCreateActionPerformed

@@ -22,14 +22,16 @@ public class PointOnScreen extends JPanel {
 		this.setBackground(new java.awt.Color(20, 145, 15));
 		
 	      addMouseListener(new MouseAdapter() { 
-	          public void mousePressed(MouseEvent me) { 
+	          @Override
+			public void mousePressed(MouseEvent me) { 
 	            repaint();
 	          } 
 	        }); 
 
 	  }
 	
-  public void paintComponent(Graphics g) {
+  @Override
+public void paintComponent(Graphics g) {
     super.paintComponent(g);
     Graphics2D g2d = (Graphics2D) g;    
     Dimension size = getSize();
@@ -47,6 +49,7 @@ public class PointOnScreen extends JPanel {
     {
     	x = w/2;
     	y = h/2;
+    	e.getMessage();
     }
     Ellipse2D e = new Ellipse2D.Double(x,y,10,10);
     

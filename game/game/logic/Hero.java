@@ -3,9 +3,14 @@ package game.logic;
 //import java.util.*;
 import java.io.Serializable;
 
+@SuppressWarnings("unqualified-field-access")
 public class Hero implements Serializable {
 
-    private String name;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 7398158183710161555L;
+	private String name;
     private double experience;
     private Item Left;
     private Item Right;
@@ -39,7 +44,7 @@ public class Hero implements Serializable {
                 h.getHealth(), h.getStamina(), h.getEnergy(), h.getMaxEnergy());
     }
 
-    public String getName() {
+	public String getName() {
         return name;
     }
 
@@ -195,7 +200,7 @@ public class Hero implements Serializable {
     }
     
     /**
-     * Attack of this hero to "other", given as paramether
+     * Attack of this hero to "other", given as parameter
      * @param other refers to current opponent
      */
     public void attack(Hero other) {
@@ -206,7 +211,7 @@ public class Hero implements Serializable {
     }
     
     /**
-     * Standart toString method applyed to hero
+     * Standard toString method applied to hero
      * @return this hero to String
      */
     @Override

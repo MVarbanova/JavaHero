@@ -2,9 +2,14 @@ package game.logic;
 
 import java.io.Serializable;
 
+@SuppressWarnings("unqualified-field-access")
 public class Item implements Serializable {
 
-    private String iname;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -8526473204325006283L;
+	private String iname;
     private int power;
     private int weight;
 
@@ -51,7 +56,7 @@ public class Item implements Serializable {
         return (1 + 0.01 * getWeight()) * getPower();
     }
 
-    public String getIname() {
+	public String getIname() {
         return iname;
     }
 

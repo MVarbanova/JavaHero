@@ -4,11 +4,12 @@ public class Battle {
 
     private Hero first, second;
 
-    /**Inicialization of the two fighting heroes
+    /**Initialization of the two fighting heroes
      * @param h1 current game player
-     * @param h2 choosen opponent from the list
+     * @param h2 chosen opponent from the list
      */
-    public Battle(Hero h1, Hero h2) {
+    @SuppressWarnings("unqualified-field-access")
+	public Battle(Hero h1, Hero h2) {
         first = new Hero(h1);
         second = new Hero(h2);
     }
@@ -19,7 +20,8 @@ public class Battle {
      *
      * @return the current game player after the fight.
      */
-    public Hero fight() {
+    @SuppressWarnings("unqualified-field-access")
+	public Hero fight() {
         int turnsCount = 0;
         while (first.getHealth() > 0 && second.getHealth() > 0) {
             turnsCount++;
