@@ -1,0 +1,1 @@
+Move all strings to property file.
