@@ -1,2 +1,2 @@
 Move all strings to property file.
-Make the hero attack another hero without battle betwean them (mele ve).
+Make the hero attack another hero without battle between them (mele ve).
